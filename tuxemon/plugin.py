@@ -269,6 +269,7 @@ def load_plugins(
         itself.
     """
     classes: dict[str, Union[type[InterfaceValue], type[PluginObject]]] = {}
+    logger.error(f"[*] load_plugins -- Loading plugins from {path} for category '{category}'")
     plugins = load_directory(path)
 
     for cls in get_available_classes(plugins, interface=interface):
@@ -280,6 +281,6 @@ def load_plugins(
             )
             continue
         classes[name] = cls
-        logger.info(f"loaded {category}: {cls.name}")
+        logger.error(f"[*] loaded {category}: {cls.name}")
 
     return classes

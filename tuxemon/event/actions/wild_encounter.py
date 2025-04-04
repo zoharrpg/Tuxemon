@@ -60,8 +60,16 @@ class WildEncounterAction(EventAction):
             return
 
         logger.info("Starting wild encounter!")
+        logger.error("[*] execute_action: wild_encounter (%s, %s, %s, %s, %s, %s)",
+                     self.monster_slug,
+                     self.monster_level,
+                     self.exp,
+                     self.money,
+                     self.env,
+                     self.rgb)
 
         current_monster = monster.Monster()
+        # TODO: if we add a new monster to DB, it should be loaded from the DB here
         current_monster.load_from_db(self.monster_slug)
         current_monster.level = self.monster_level
         current_monster.set_level(self.monster_level)

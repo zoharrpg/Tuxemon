@@ -25,6 +25,13 @@ class EncounterData:
         """Loads encounter data from the db."""
         try:
             results = db.lookup(slug, table="encounter")
+            logger.error(
+                "[*] Loaded encounter data for slug '%s' with %s encounters.",
+                slug,
+                results.monsters,
+            )
+            # print encounters for debugging purposes
+            
         except KeyError:
             raise RuntimeError(f"Encounter {slug} not found")
 

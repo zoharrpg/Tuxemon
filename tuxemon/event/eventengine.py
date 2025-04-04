@@ -288,6 +288,8 @@ class EventEngine:
             return
 
         try:
+            # logger.error("[*] executing action '%s' with parameters: %s", 
+            #              action_name, parameters)
             return action.execute()
         except Exception as e:
             logger.error(f"Error executing action '{action_name}': {e}")

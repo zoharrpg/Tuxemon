@@ -10,6 +10,14 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
+import logging
+import sys
+logger = logging.getLogger(__name__)
+log_hdlr = logging.StreamHandler(sys.stdout)
+log_hdlr.setLevel(logging.DEBUG)
+log_hdlr.setFormatter(
+    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"),
+)
 
 
 @dataclass
@@ -35,6 +43,8 @@ class AppearEffect(TechEffect):
 
         # Check if the target is disappeared
         target_sprite = combat._monster_sprite_map.get(target, None)
+        logger.error("[*] ---> Target sprite: %s", target_sprite)   
+        print("[*] ---> Target sprite: ", target_sprite)
         if target_sprite and not target_sprite.is_visible():
             # If the target is disappeared, don't tackle
             target_is_disappeared = True
