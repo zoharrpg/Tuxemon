@@ -281,6 +281,6 @@ def load_plugins(
             )
             continue
         classes[name] = cls
-        logger.error(f"[*] loaded {category}: {cls.name}")
+        logger.info(f"[*] loaded {category}: {cls.name}")
 
     return classes

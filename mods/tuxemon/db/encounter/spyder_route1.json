@@ -30,6 +30,20 @@
       ]
     },
     {
+      "monster": "aardorn1",
+      "encounter_rate": 100,
+      "variables": [
+        {
+          "daytime": "true"
+        }
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        2,
+        4
+      ]
+    },
+    {
       "monster": "cataspike",
       "encounter_rate": 3.5,
       "variables": [

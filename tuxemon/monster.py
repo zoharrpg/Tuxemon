@@ -185,6 +185,32 @@ class Monster:
         self.set_stats()
         self.set_flairs()
 
+    def to_str(self) -> str:
+        """
+        Returns a string representation of the monster's
+        essential information: name, description, types, and sprite paths.
+
+        Returns:
+            str: A human-readable summary of the monster.
+        """
+        # Gather the monster's types as comma-separated slugs
+        type_slugs = ", ".join([t.slug for t in self.types]) if self.types else "None"
+
+        # Build the string
+        info = [
+            f"Name: {self.name}",
+            f"Description: {self.description}",
+            f"Types: {type_slugs}",
+            "Image Paths:",
+            f"  Front: {self.front_battle_sprite}",
+            f"  Back: {self.back_battle_sprite}",
+            f"  Menu1: {self.menu_sprite_1}",
+            f"  Menu2: {self.menu_sprite_2}",
+        ]
+
+        return "\n".join(info)
+    
+
     def load_from_db(self, slug: str) -> None:
         """
         Loads and sets this monster's attributes from the monster.db database.
@@ -241,6 +267,7 @@ class Monster:
         self.evolutions.extend(results.evolutions or [])
         self.history.extend(results.history or [])
 
+        # Yizhou: monster image here!
         # Look up the monster's sprite image paths
         if results.sprites:
             self.front_battle_sprite = self.get_sprite_path(
@@ -263,6 +290,7 @@ class Monster:
             if results.sounds
             else f"sound_{self.types[0].slug}_faint"
         )
+        # print(self)
 
     def learn(
         self,

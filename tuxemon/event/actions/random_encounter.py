@@ -88,7 +88,7 @@ class RandomEncounterAction(EventAction):
                 rgb,
                 held_item,
             ]
-            logger.error("[*] execute_action: wild_encounter(%s)", params)
+            logger.error("[*] random_encounter_action: wild_encounter(%s)", params)
             self.session.client.event_engine.execute_action(
                 "wild_encounter", params, True
             )

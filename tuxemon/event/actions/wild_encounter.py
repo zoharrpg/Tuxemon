@@ -70,6 +70,13 @@ class WildEncounterAction(EventAction):
 
         current_monster = monster.Monster()
         # TODO: if we add a new monster to DB, it should be loaded from the DB here
+        # try to sleep to see how that may block
+        import time
+        sleep_time = 2  # seconds
+        time.sleep(sleep_time)
+        
+
+        
         current_monster.load_from_db(self.monster_slug)
         current_monster.level = self.monster_level
         current_monster.set_level(self.monster_level)
@@ -87,7 +94,13 @@ class WildEncounterAction(EventAction):
             else:
                 logger.error(f"{item.name} isn't 'holdable'")
         current_monster.wild = True
-
+        
+        logger.error(f"[*] current_monster: {current_monster.to_str()}")
+        # if manually adding a pokemon:
+        # route: spyder_route1 <- add encounter rate
+        # monster json: Tuxemon\mods\tuxemon\db\monster\aardart.json
+        # monster image: 
+        
         self.world = self.session.client.get_state_by_name(WorldState)
         npc = NPC("random_encounter_dummy", world=self.world)
         npc.add_monster(current_monster, len(npc.monsters))
