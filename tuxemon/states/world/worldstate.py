@@ -27,6 +27,7 @@ from tuxemon.camera import Camera, CameraManager, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
+from tuxemon.grass_thread_handler import BackgroundThreadHandler
 from tuxemon.map import RegionProperties, TuxemonMap, dirs2, proj
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.map_view import MapRenderer
@@ -83,6 +84,10 @@ class WorldState(state.State):
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.tile_size = prepare.TILE_SIZE
+
+        # Initialize and start background thread handler
+        self.background_handler = BackgroundThreadHandler()
+        self.background_handler.start_thread()
 
         #####################################################################
         #                           Player Details                           #
@@ -198,6 +203,10 @@ class WorldState(state.State):
         """
         super().update(time_delta)
         self.update_npcs(time_delta)
+        
+        # Update background thread handler with current map info
+        self.background_handler.update(self)
+
         self.map_renderer.update(time_delta)
         self.camera_manager.update()
 

@@ -2079,28 +2079,26 @@ class Validator:
             return False
 
     def size(self, file: str, size: tuple[int, int]) -> bool:
-        """
-        Check to see if a given file respects the predefined size.
-
-        Parameters:
-            file: The file path relative to a mod directory
-            size: The predefined size
-
-        Returns:
-            True if file respects
-        """
         path = prepare.fetch(file)
         with Image.open(path) as sprite:
             native = prepare.NATIVE_RESOLUTION
+
+            # Check and optionally resize
             if size == native:
-                if not (
-                    sprite.size[0] <= size[0] and sprite.size[1] <= size[1]
-                ):
+                if sprite.size[0] > size[0] or sprite.size[1] > size[1]:
+                    if True:
+                        sprite = sprite.resize(size)
+                        sprite.save(path)
+                        return True
                     raise ValueError(
                         f"{file} has size {sprite.size}, but must be less than or equal to {native}"
                     )
             else:
                 if sprite.size != size:
+                    if True:
+                        sprite = sprite.resize(size)
+                        sprite.save(path)
+                        return True
                     raise ValueError(
                         f"{file} has size {sprite.size}, but must be {size}"
                     )
