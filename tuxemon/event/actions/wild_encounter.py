@@ -72,8 +72,8 @@ class WildEncounterAction(EventAction):
         # TODO: if we add a new monster to DB, it should be loaded from the DB here
         # try to sleep to see how that may block
         import time
-        sleep_time = 2  # seconds
-        time.sleep(sleep_time)
+        # sleep_time = 2  # seconds
+        # time.sleep(sleep_time)
         
 
         

@@ -63,6 +63,6 @@
     "height": 70,
     "weight": 4,
     "catch_rate": 100.0,
-    "lower_catch_resistance": 0.95,
-    "upper_catch_resistance": 1.05
+    "lower_catch_resistance": 1,
+    "upper_catch_resistance": 1
 }

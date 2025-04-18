@@ -3565,6 +3565,12 @@ msgstr "Empty"
 ## MONSTER TRANSLATIONS ##
 # Monster details
 
+msgid "ai_generated_1_description"
+msgstr "This is an AI-generated pokemon."
+
+msgid "ai_generated_1"
+msgstr "Ai_generated_1"
+
 msgid "aardart_description"
 msgstr "It keeps count of every ant it has eaten, and celebrates significant numbers."
 
